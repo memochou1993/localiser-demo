@@ -1,4 +1,5 @@
 {
-	"__book": "{n} book | {n} books",
-	"__hello": "Welcome to Localiser Demo Page"
+	"__BookCount": "{n} book | {n} books",
+	"__Hello": "Welcome to Localiser",
+	"__Library": "Library"
 }

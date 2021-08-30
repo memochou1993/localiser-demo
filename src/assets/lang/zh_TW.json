@@ -1,4 +1,5 @@
 {
-	"__book": "{n} 本書",
-	"__hello": "歡迎來到 Localiser Demo 網頁"
+	"__BookCount": "{n} 本書",
+	"__Hello": "歡迎來到 Localiser",
+	"__Library": "圖書館"
 }
