@@ -64,9 +64,6 @@
       </table>
       <div>
         <div
-          v-text="'Ecosystem'"
-        />
-        <div
           id="ecosystem"
         >
           <a
@@ -167,7 +164,7 @@ table {
   width: 80vw;
 }
 table, th, td {
-  border: 1px #42b883 solid;
+  border: 1px #2c3e50 solid;
   height: 50px;
 }
 table > tr > td {
@@ -190,7 +187,9 @@ table > tr > td {
 #ecosystem {
   margin: 12px 0;
 }
-a:link {
+
+a, a:link {
+  color: #2c3e50;
   text-decoration: none;
 }
 </style>
