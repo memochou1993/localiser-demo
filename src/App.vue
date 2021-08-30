@@ -22,18 +22,19 @@
         :key="locale.locale"
       >
         <span
-          class="cursor-pointer"
+          :class="[
+            'locale cursor-pointer',
+            locale.locale === state.locale ? 'underline' : '',
+            state.availableLocales.includes(locale.locale) ? 'highlight' : '',
+          ]"
           @click="changeLanguage(locale.locale)"
-        >
-          <span
-            :class="[locale.locale === state.locale ? 'underline' : '']"
-            v-text="locale.name"
-          />
-          <span
-            v-if="i < state.locales.length - 1"
-            v-text="' ‧ '"
-          />
-        </span>
+          v-text="locale.name"
+        />
+        <span
+          v-if="i < state.locales.length - 1"
+          class="divider"
+          v-text="' ‧ '"
+        />
       </template>
     </div>
     <div
@@ -86,6 +87,7 @@
         v-text="'Localiser'"
       />
       <span
+        class="divider"
         v-text="' ‧ '"
       />
       <a
@@ -95,7 +97,8 @@
         v-text="'Localiser UI'"
       />
       <span
-          v-text="' ‧ '"
+        class="divider"
+        v-text="' ‧ '"
       />
       <a
         href="https://github.com/memochou1993/localiser-cli"
@@ -128,18 +131,22 @@ export default {
     const state = reactive({
       locale: '',
       locales: null,
+      availableLocales: [],
       messages: null,
     });
     (async () => {
       state.locales = await api.fetchLocales();
-      state.messages = await loadMessage(DEFAULT_LOCALE);
-      setLanguage(DEFAULT_LOCALE);
-      state.locale = DEFAULT_LOCALE;
+      const locale = state.locales.some((l) => l.locale === DEFAULT_LOCALE) ? DEFAULT_LOCALE : 'en';
+      state.messages = await loadMessage(locale);
+      state.availableLocales.push(locale);
+      setLanguage(locale);
+      state.locale = locale;
     })();
     const isLoaded = computed(() => !!state.locales && !!state.messages);
     const changeLanguage = async (locale) => {
       if (!i18n.global.availableLocales.includes(locale)) {
         await loadMessage(locale);
+        state.availableLocales.push(locale);
       }
       setLanguage(locale);
       state.locale = locale;
@@ -193,12 +200,24 @@ table > tr > td {
   text-align: left;
   width: 75%;
 }
+.divider {
+  padding: 0 4px;
+}
 a, a:link {
   color: #2c3e50;
   text-decoration: none;
 }
 .underline {
-  border-bottom: 1px #2c3e50 solid;
+  border-bottom: 2px solid cornflowerblue;
+}
+.locale {
+  padding: 4px 8px;
+}
+.locale:hover {
+  background-color: aliceblue;
+}
+.highlight {
+  background-color: aliceblue;
 }
 .cursor-pointer {
   cursor: pointer;

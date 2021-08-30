@@ -1,19 +1,8 @@
 import { createI18n } from 'vue-i18n/index';
 import api from "../api";
 
-// define support locales
-const LOCALES = Object.freeze({
-  en: 'en',
-  zh: 'zh_TW',
-  zh_TW: 'zh_TW',
-  'zh-TW': 'zh_TW',
-});
-
-// detect preferred locale
-const language = localStorage.getItem('locale') || window.navigator.language;
-
 // determine default locale
-export const DEFAULT_LOCALE = language in LOCALES ? LOCALES[language] : LOCALES.en;
+export const DEFAULT_LOCALE = localStorage.getItem('locale') || window.navigator.language;
 
 // create an I18n instance
 const i18n = createI18n({
