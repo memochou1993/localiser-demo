@@ -2,39 +2,54 @@
   <div
     v-show="isLoaded"
   >
-    <div>
-      <img
-        alt="Vue"
-        src="./assets/logo.png"
-        id="logo"
+    <div
+      id="logo"
+    >
+      <a
+        href="https://localiser.epoch.tw/"
+        rel="noopener noreferrer"
+        target="_blank"
       >
-      <div>
-        <template
-          v-for="(locale, i) in state.locales"
-          :key="locale.locale"
+        <img
+          alt="Vue"
+          src="./assets/logo.png"
+        />
+      </a>
+    </div>
+    <div>
+      <template
+        v-for="(locale, i) in state.locales"
+        :key="locale.locale"
+      >
+        <span
+          class="cursor-pointer"
+          @click="changeLanguage(locale.locale)"
         >
           <span
-            class="cursor-pointer"
-            @click="changeLanguage(locale.locale)"
-          >
-            <span
-              :class="[locale.locale === state.locale ? 'selected' : '']"
-              v-text="locale.name"
-            />
-            <span
-              v-if="i < state.locales.length - 1"
-              v-text="' ‧ '"
-            />
-          </span>
-        </template>
-      </div>
+            :class="[locale.locale === state.locale ? 'underline' : '']"
+            v-text="locale.name"
+          />
+          <span
+            v-if="i < state.locales.length - 1"
+            v-text="' ‧ '"
+          />
+        </span>
+      </template>
+    </div>
+    <div
+      id="body"
+    >
       <table>
         <tr>
           <th>
-            Key
+            <span
+              v-text="'Key'"
+            />
           </th>
           <th>
-            Value
+            <span
+              v-text="'Value'"
+            />
           </th>
         </tr>
         <tr
@@ -62,36 +77,32 @@
           </td>
         </tr>
       </table>
-      <div>
-        <div
-          id="ecosystem"
-        >
-          <a
-            href="https://github.com/memochou1993/localiser"
-            rel="noopener noreferrer"
-            target="_blank"
-            v-text="'Localiser'"
-          />
-          <span
-            v-text="' ‧ '"
-          />
-          <a
-            href="https://github.com/memochou1993/localiser-ui"
-            rel="noopener noreferrer"
-            target="_blank"
-            v-text="'Localiser UI'"
-          />
-          <span
-              v-text="' ‧ '"
-          />
-          <a
-            href="https://github.com/memochou1993/localiser-cli"
-            rel="noopener noreferrer"
-            target="_blank"
-            v-text="'Localiser CLI'"
-          />
-        </div>
-      </div>
+    </div>
+    <div>
+      <a
+        href="https://github.com/memochou1993/localiser"
+        rel="noopener noreferrer"
+        target="_blank"
+        v-text="'Localiser'"
+      />
+      <span
+        v-text="' ‧ '"
+      />
+      <a
+        href="https://github.com/memochou1993/localiser-ui"
+        rel="noopener noreferrer"
+        target="_blank"
+        v-text="'Localiser UI'"
+      />
+      <span
+          v-text="' ‧ '"
+      />
+      <a
+        href="https://github.com/memochou1993/localiser-cli"
+        rel="noopener noreferrer"
+        target="_blank"
+        v-text="'Localiser CLI'"
+      />
     </div>
   </div>
 </template>
@@ -152,12 +163,16 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin: 60px 0;
-  display: flex;
-  justify-content: center;
 }
 #logo {
+  margin-bottom: 40px;
+}
+#logo img {
   width: 80px;
-  margin-bottom: 20px;
+}
+#body {
+  display: flex;
+  justify-content: center;
 }
 table {
   margin: 40px 0;
@@ -178,18 +193,14 @@ table > tr > td {
   text-align: left;
   width: 75%;
 }
-.selected {
+a, a:link {
+  color: #2c3e50;
+  text-decoration: none;
+}
+.underline {
   border-bottom: 1px #2c3e50 solid;
 }
 .cursor-pointer {
   cursor: pointer;
-}
-#ecosystem {
-  margin: 12px 0;
-}
-
-a, a:link {
-  color: #2c3e50;
-  text-decoration: none;
 }
 </style>
