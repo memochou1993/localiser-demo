@@ -1,0 +1,4 @@
+---
+endpoint: https://api.localiser.epoch.tw/api
+project_id: dXNlpj
+output_directory: src/assets/lang
