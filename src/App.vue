@@ -1,6 +1,6 @@
 <template>
   <div
-    v-show="isLoaded"
+    v-if="isLoaded"
   >
     <div
       id="logo"
@@ -28,7 +28,7 @@
             state.availableLocales.includes(locale.locale) ? 'highlight' : '',
           ]"
           @click="changeLanguage(locale.locale)"
-          v-text="locale.name"
+          v-text="t(`__${locale.locale}`)"
         />
         <span
           v-if="i < state.locales.length - 1"
